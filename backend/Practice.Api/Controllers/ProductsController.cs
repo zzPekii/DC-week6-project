@@ -81,6 +81,16 @@ public class ProductsController : ControllerBase
         return Ok(result);
     }
 
+    // question 10 Calculate Average Product Price
+    // GET: api/products/average-price
+    [HttpGet("average-price")]
+    public ActionResult<decimal> GetAverageProductPrice()
+    {
+        var result = Products
+            .Average(p => p.Price);
+
+        return Ok(result);
+    }
 
 
     // GET: api/products
