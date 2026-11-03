@@ -24,6 +24,19 @@ public class ProductsController : ControllerBase
         return products;
     }
 
+    // question 3 Sort Products by Price (Ascending)
+    // GET: api/products/sort
+    [HttpGet("sort")]
+    public ActionResult<List<Product>> GetSortedProducts()
+    {
+        var result = Products
+            .OrderBy(p => p.Price)
+            .ToList();
+
+        return Ok(result);
+    }
+
+
     // GET: api/products
     [HttpGet]
     public ActionResult<List<Product>> GetAll()
