@@ -16,6 +16,83 @@ public class ProductsController : ControllerBase
         new() { Id = 5, Name = "Keyboard", Price = 80, Category = "Tech" }
     ];
 
+    // question 1 Get Products with Price > 100
+    [HttpGet("Price100")]
+    public ActionResult<List<Product>> GetProductGreater100 ()
+    {
+        List<Product> products = Products.Where(p => p.Price >= 100).ToList();
+        return products;
+    }
+
+    // question 3 Sort Products by Price (Ascending)
+    // GET: api/products/sort
+    [HttpGet("sort")]
+    public ActionResult<List<Product>> GetSortedProducts()
+    {
+        var result = Products
+            .OrderBy(p => p.Price)
+            .ToList();
+
+        return Ok(result);
+    }
+
+    // question 6 Get First Office Product
+    // GET: api/products/first-office
+    [HttpGet("first-office")]
+    public ActionResult<Product?> GetFirstOfficeProduct()
+    {
+        var result = Products
+            .FirstOrDefault(p => p.Category == "Office");
+
+        return Ok(result);
+    }
+
+    // question 7 Get Product Names Only
+    // GET: api/products/names
+    [HttpGet("names")]
+    public ActionResult<List<string>> GetProductNames()
+    {
+        var result = Products
+            .Select(p => p.Name)
+            .ToList();
+
+        return Ok(result);
+    }
+
+    // question 8 Count Tech Products
+    // GET: api/products/count-tech
+    [HttpGet("count-tech")]
+    public ActionResult<int> GetTechProductCount()
+    {
+        var result = Products
+            .Count(p => p.Category == "Tech");
+
+        return Ok(result);
+    }
+
+    // question 9 Check if Any Product Costs More Than 1000
+    // GET: api/products/any-expensive
+    [HttpGet("any-expensive")]
+    public ActionResult<bool> HasExpensiveProduct()
+    {
+        var result = Products
+            .Any(p => p.Price > 1000);
+
+        return Ok(result);
+    }
+
+    // question 10 Calculate Average Product Price
+    // GET: api/products/average-price
+    [HttpGet("average-price")]
+    public ActionResult<decimal> GetAverageProductPrice()
+    {
+        var result = Products
+            .Average(p => p.Price);
+
+        return Ok(result);
+    }
+
+
     // GET: api/products
     [HttpGet]
     public ActionResult<List<Product>> GetAll()
