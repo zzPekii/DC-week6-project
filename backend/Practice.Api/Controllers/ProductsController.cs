@@ -59,6 +59,16 @@ public class ProductsController : ControllerBase
         return Ok(result);
     }
 
+    // question 8 Count Tech Products
+    // GET: api/products/count-tech
+    [HttpGet("count-tech")]
+    public ActionResult<int> GetTechProductCount()
+    {
+        var result = Products
+            .Count(p => p.Category == "Tech");
+
+        return Ok(result);
+    }
 
 
     // GET: api/products
