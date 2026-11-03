@@ -70,6 +70,18 @@ public class ProductsController : ControllerBase
         return Ok(result);
     }
 
+    // question 9 Check if Any Product Costs More Than 1000
+    // GET: api/products/any-expensive
+    [HttpGet("any-expensive")]
+    public ActionResult<bool> HasExpensiveProduct()
+    {
+        var result = Products
+            .Any(p => p.Price > 1000);
+
+        return Ok(result);
+    }
+
+
 
     // GET: api/products
     [HttpGet]
