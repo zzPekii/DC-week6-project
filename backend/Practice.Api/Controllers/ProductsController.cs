@@ -36,6 +36,30 @@ public class ProductsController : ControllerBase
         return Ok(result);
     }
 
+    // question 6 Get First Office Product
+    // GET: api/products/first-office
+    [HttpGet("first-office")]
+    public ActionResult<Product?> GetFirstOfficeProduct()
+    {
+        var result = Products
+            .FirstOrDefault(p => p.Category == "Office");
+
+        return Ok(result);
+    }
+
+    // question 7 Get Product Names Only
+    // GET: api/products/names
+    [HttpGet("names")]
+    public ActionResult<List<string>> GetProductNames()
+    {
+        var result = Products
+            .Select(p => p.Name)
+            .ToList();
+
+        return Ok(result);
+    }
+
+
 
     // GET: api/products
     [HttpGet]
