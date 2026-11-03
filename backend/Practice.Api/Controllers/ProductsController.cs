@@ -16,6 +16,14 @@ public class ProductsController : ControllerBase
         new() { Id = 5, Name = "Keyboard", Price = 80, Category = "Tech" }
     ];
 
+    // question 1 Get Products with Price > 100
+    [HttpGet("Price100")]
+    public ActionResult<List<Product>> GetProductGreater100 ()
+    {
+        List<Product> products = Products.Where(p => p.Price >= 100).ToList();
+        return products;
+    }
+
     // GET: api/products
     [HttpGet]
     public ActionResult<List<Product>> GetAll()
